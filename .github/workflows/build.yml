@@ -1,7 +1,7 @@
 # Sample repository at https://github.com/Novfensec/SAMPLE-KIVYMD-APP
 # Tic Tac Toe Game at https://github.com/Novfensec/Tic-Tac-Toe-Android
 
-name: Android Build
+name: Autoupdate and Build
 
 on:
   push:
@@ -12,7 +12,7 @@ on:
       - main
 
 jobs:
-  build:
+  autoupdate:
     runs-on: ubuntu-latest
 
     steps:
@@ -89,6 +89,8 @@ jobs:
             libgstreamer1.0 \
             gstreamer1.0-plugins-base \
             gstreamer1.0-plugins-good
+          sudo apt-get update
+          sudo apt-get upgrade
           sudo apt-get install -y \
             zip \
             unzip \
@@ -99,8 +101,18 @@ jobs:
             libssl-dev \
             libtool \
             automake
-          sudo apt-get update
-          sudo apt-get upgrade
+      - name: Run autoupdate
+        run: |
+          find . -name 'configure.ac' -o -name 'configure.in' | xargs -I {} autoupdate -f {}
+
+      - name: Commit changes
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git add . 
+          git commit -m 'Run autoupdate'
+          git push
+          
       # Set up Java 17 required by Gradle
       - name: Setup Java 17 required by Gradle
         uses: actions/setup-java@v4
@@ -126,7 +138,6 @@ jobs:
           pip install geopy
           pip install pytz
           pip install timezonefinder
-          export PATH=$PATH:~/.local/bin/
       # Build with Buildozer
       - name: Build with Buildozer
         id: buildozer
