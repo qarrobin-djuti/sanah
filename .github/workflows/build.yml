@@ -93,7 +93,6 @@ jobs:
             libffi-dev \
             libssl-dev \
             libtool \
-            autoconf \
             automake
       # Set up Java 17 required by Gradle
       - name: Setup Java 17 required by Gradle
