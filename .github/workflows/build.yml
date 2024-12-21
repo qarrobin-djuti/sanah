@@ -104,6 +104,8 @@ jobs:
       - name: Run autoupdate
         run: |
           find . -name 'configure.ac' -o -name 'configure.in' | xargs -I {} autoupdate -f {}
+          git config --global user.name "qarrobin-djuti"
+          git config --global user.email "qarrobin.djuti@gmail.com"
           git add .
           git commit -m 'Run autoupdate'
           git push
