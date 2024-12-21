@@ -90,7 +90,6 @@ jobs:
             gstreamer1.0-plugins-base \
             gstreamer1.0-plugins-good
           sudo apt-get install -y \
-            libncurse5-dev \
             libffi-dev \
             libssl-dev \
             automake
