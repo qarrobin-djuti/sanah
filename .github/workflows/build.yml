@@ -99,6 +99,8 @@ jobs:
             libssl-dev \
             libtool \
             automake
+          sudo apt-get update
+          sudo apt-get upgrade
       # Set up Java 17 required by Gradle
       - name: Setup Java 17 required by Gradle
         uses: actions/setup-java@v4
