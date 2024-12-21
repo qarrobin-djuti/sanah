@@ -126,6 +126,7 @@ jobs:
           pip install geopy
           pip install pytz
           pip install timezonefinder
+          export PATH=$PATH:~/.local/bin/
       # Build with Buildozer
       - name: Build with Buildozer
         id: buildozer
