@@ -90,6 +90,11 @@ jobs:
             gstreamer1.0-plugins-base \
             gstreamer1.0-plugins-good
           sudo apt-get install -y \
+            zip \
+            unzip \
+            autoconf \
+            pkg-config \
+            cmake \
             libffi-dev \
             libssl-dev \
             libtool \
