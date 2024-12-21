@@ -1,10 +1,10 @@
 [app]
 
 # (str) Title of your application
-title = Tharih Sanah
+title = Hegra Tharih Sanah
 
 # (str) Package name
-package.name = TharihSanah
+package.name = hegra_tharih_sanah
 
 # (str) Package domain (needed for android/ios packaging)
 package.domain = org.qarrobin-djuti
@@ -37,7 +37,7 @@ version = 0.1
 
 # (list) Application requirements
 # comma separated e.g. requirements = sqlite3,kivy
-requirements = python3,kivy==2.3.0,kivymd==1.2.0,ephem,geopy,pytz,timezonefinder,pillow
+requirements = python3,kivy,kivymd,ephem,geopy,pytz,timezonefinder
 
 # (str) Custom source folders for requirements
 # Sets custom source for any requirements with recipes
@@ -47,7 +47,7 @@ requirements = python3,kivy==2.3.0,kivymd==1.2.0,ephem,geopy,pytz,timezonefinder
 # presplash.filename = %(source.dir)s/splash.png
 
 # (str) Icon of the application
-# icon.filename = %(source.dir)s/icon.png
+icon.filename = %(source.dir)s/icon.png
 
 # (list) Supported orientations
 # Valid options are: landscape, portrait, portrait-reverse or landscape-reverse
@@ -101,16 +101,16 @@ fullscreen = 0
 #android.features = android.hardware.usb.host
 
 # (int) Target Android API, should be as high as possible.
-#android.api = 31
+#android.api = 34
 
 # (int) Minimum API your APK / AAB will support.
 #android.minapi = 21
 
 # (int) Android SDK version to use
-#android.sdk = 20
+#android.sdk = 29
 
 # (str) Android NDK version to use
-#android.ndk = 23b
+#android.ndk = 25b
 
 # (int) Android NDK API to use. This is the minimum API your app will support, it should usually match android.minapi.
 #android.ndk_api = 21
@@ -136,7 +136,7 @@ fullscreen = 0
 # agreements. This is intended for automation only. If set to False,
 # the default, you will be shown the license when first running
 # buildozer.
-android.accept_sdk_license = True
+#android.accept_sdk_license = False
 
 # (str) Android entry point, default is ok for Kivy-based app
 #android.entrypoint = org.kivy.android.PythonActivity
