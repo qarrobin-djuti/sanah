@@ -1,7 +1,7 @@
 # Sample repository at https://github.com/Novfensec/SAMPLE-KIVYMD-APP
 # Tic Tac Toe Game at https://github.com/Novfensec/Tic-Tac-Toe-Android
 
-name: Build
+name: Autoupdate and Build
 
 on:
   push:
@@ -12,7 +12,7 @@ on:
       - main
 
 jobs:
-  build:
+  autoupdate:
     runs-on: ubuntu-latest
 
     steps:
@@ -101,14 +101,24 @@ jobs:
             automake
           sudo apt-get update
           sudo apt-get upgrade
-      - name: Run autoupdate
+      - name: Find and Update configure.ac or configure.in
         run: |
-          find . -name 'configure.ac' -o -name 'configure.in' | xargs -I {} autoupdate -f {}
+          files=$(find . -name 'configure.ac' -o -name 'configure.in')
+          if [ -n "$files" ]; then
+            echo "Running autoupdate on the following files:"
+            echo "$files"
+            autoupdate -f $files
+          else
+            echo "No configure.ac or configure.in files found."
+          fi
+          
+      - name: Commit changes
+        run: |
           git config --global user.name "qarrobin-djuti"
           git config --global user.email "qarrobin.djuti@gmail.com"
           git add .
           git commit -m 'Run autoupdate'
-          git push
+          git push || echo "No changes to commit"
       # Set up Java 17 required by Gradle
       - name: Setup Java 17 required by Gradle
         uses: actions/setup-java@v4
