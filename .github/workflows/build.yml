@@ -92,16 +92,16 @@ jobs:
             zip \
             unzip \
             openjdk-17-jdk \
-            autoconf \
             pkg-config \
             cmake \
             libffi-dev \
             libssl-dev \
+            autoconf \
+            automake \
             libtool \
             libtool-bin \
-            autotools-dev
-            libltdl-dev \
-            automake
+            autotools-dev \
+            libltdl-dev
           sudo apt-get update
           sudo apt-get upgrade
           
