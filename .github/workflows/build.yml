@@ -92,6 +92,7 @@ jobs:
             zip \
             unzip \
             openjdk-17-jdk \
+            ccache \
             pkg-config \
             cmake \
             libffi-dev \
@@ -101,10 +102,14 @@ jobs:
             libtool \
             libtool-bin \
             autotools-dev \
-            libltdl-dev
+            libltdl-dev \
+            libc6-dev \
+            gcc \
+            g++ \
+            make
           sudo apt-get update
           sudo apt-get upgrade
-          
+          export ACLOCAL_PATH=$HOME/install/libtool/share/aclocal:$ACLOCAL_PATH
       - name: Run autoupdate and autoreconf
         run: |
           files=$(find . -name 'configure.ac' -o -name 'configure.in')
