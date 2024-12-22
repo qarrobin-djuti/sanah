@@ -79,7 +79,6 @@ jobs:
             sqlite3 \
             bzip2 \
             libbz2-dev \
-            zlib1g-dev \
             openssl \
             libgdbm-dev \
             libgdbm-compat-dev \
@@ -92,6 +91,7 @@ jobs:
           sudo apt-get install -y \
             zip \
             unzip \
+            openjdk-17-jdk \
             autoconf \
             pkg-config \
             cmake \
@@ -141,7 +141,7 @@ jobs:
       - name: Install pip dependencies
         run: |
           pip install --upgrade pip
-          pip install buildozer cython==0.29.33 git+https://github.com/kivy/plyer.git
+          pip install buildozer cython==0.29.33 virtualenv git+https://github.com/kivy/plyer.git
           pip install kivy
           pip install kivymd
           pip install pyephem
@@ -149,6 +149,7 @@ jobs:
           pip install geopy
           pip install pytz
           pip install timezonefinder
+          export PATH=$PATH:~/.local/bin/
       # Build with Buildozer
       - name: Build with Buildozer
         id: buildozer
