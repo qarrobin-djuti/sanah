@@ -104,13 +104,6 @@ jobs:
             automake
           sudo apt-get update
           sudo apt-get upgrade
-          apt-cache search libtool
-            autotools-dev - Update infrastructure for config.{guess,sub} files
-            libltdl-dev - System independent dlopen wrapper for GNU libtool
-            libltdl7 - System independent dlopen wrapper for GNU libtool
-            libtool - Generic library support script
-            libtool-bin - Generic library support script (libtool binary)
-            libtool-doc - Generic library support script
           
       - name: Run autoupdate and autoreconf
         run: |
