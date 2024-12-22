@@ -101,7 +101,6 @@ jobs:
             autotools-dev \
             libltdl-dev \
             glibc-source \
-            glib-doc \
             gcc
                         
           sudo apt-get update
