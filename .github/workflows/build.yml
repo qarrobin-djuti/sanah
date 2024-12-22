@@ -102,13 +102,14 @@ jobs:
           sudo apt-get update
           sudo apt-get upgrade
           
-      - name: Find and Update configure.ac or configure.in
+      - name: Run autoupdate and autoreconf
         run: |
           files=$(find . -name 'configure.ac' -o -name 'configure.in')
           if [ -n "$files" ]; then
             echo "Running autoupdate on the following files:"
             echo "$files"
             autoupdate -f $files || { echo 'Autoupdate failed' ; exit 1; }
+            autoreconf -i || { echo 'Autoreconf failed' ; exit 1; }
           else
             echo "No configure.ac or configure.in files found."
           fi
