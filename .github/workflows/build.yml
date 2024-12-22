@@ -98,6 +98,10 @@ jobs:
             libffi-dev \
             libssl-dev \
             libtool \
+            ccache \
+            libstdc++6 \
+            libz1 \
+            libbz2-1.0 \
             automake
           sudo apt-get update
           sudo apt-get upgrade
