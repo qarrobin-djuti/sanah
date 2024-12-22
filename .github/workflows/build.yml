@@ -92,9 +92,6 @@ jobs:
             zip \
             unzip \
             openjdk-17-jdk \
-            ccache \
-            pkg-config \
-            cmake \
             libffi-dev \
             libssl-dev \
             autoconf \
@@ -102,14 +99,11 @@ jobs:
             libtool \
             libtool-bin \
             autotools-dev \
-            libltdl-dev \
-            libc6-dev \
-            gcc \
-            g++ \
-            make
+            libltdl-dev
+                        
           sudo apt-get update
           sudo apt-get upgrade
-          export ACLOCAL_PATH=$HOME/install/libtool/share/aclocal:$ACLOCAL_PATH
+          
       - name: Run autoupdate and autoreconf
         run: |
           files=$(find . -name 'configure.ac' -o -name 'configure.in')
@@ -158,7 +152,7 @@ jobs:
           pip install geopy
           pip install pytz
           pip install timezonefinder
-          export PATH=$PATH:~/.local/bin/
+          
       # Build with Buildozer
       - name: Build with Buildozer
         id: buildozer
