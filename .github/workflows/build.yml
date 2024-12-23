@@ -99,9 +99,7 @@ jobs:
             libtool \
             libtool-bin \
             autotools-dev \
-            libltdl-dev \
-            glibc-source \
-            gcc
+            libltdl-dev
                         
           sudo apt-get update
           sudo apt-get upgrade
