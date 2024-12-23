@@ -89,6 +89,7 @@ jobs:
             libgdbm-compat-dev \
             liblzma-dev \
             libreadline-dev \
+            libncursesw5-dev \
             libffi-dev \
             uuid-dev \
             autoconf \
