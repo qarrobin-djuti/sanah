@@ -147,7 +147,6 @@ jobs:
           pip install geopy
           pip install pytz
           pip install timezonefinder
-          pip install git+https://github.com/jannikmi/timezonefinder.git
           
       # Build with Buildozer
       - name: Build with Buildozer
