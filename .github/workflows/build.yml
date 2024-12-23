@@ -1,7 +1,7 @@
 # Sample repository at https://github.com/Novfensec/SAMPLE-KIVYMD-APP
 # Tic Tac Toe Game at https://github.com/Novfensec/Tic-Tac-Toe-Android
 
-name: Autoupdate and Build
+name: Android Build
 
 on:
   push:
@@ -13,7 +13,7 @@ on:
 
 jobs:
   autoupdate:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
 
     steps:
       - uses: actions/checkout@v4
@@ -32,6 +32,7 @@ jobs:
           key: buildozer-global-${{ runner.os }}-${{ steps.get-date.outputs.date }}-${{ hashFiles('buildozer.spec') }}
           restore-keys: |
             buildozer-global-${{ runner.os }}-
+            
       - name: Cache Buildozer directory in app
         uses: actions/cache@v4
         with:
@@ -39,6 +40,7 @@ jobs:
           key: ${{ runner.os }}-buildozer-${{ github.run_id }}-${{ hashFiles('buildozer.spec') }}
           restore-keys: |
             ${{ runner.os }}-buildozer-
+            
       - name: Cache Android SDK
         uses: actions/cache@v4
         with:
@@ -46,6 +48,7 @@ jobs:
           key: ${{ runner.os }}-android-sdk-${{ steps.get-date.outputs.date }}
           restore-keys: |
             ${{ runner.os }}-android-sdk-
+            
       - name: Cache Android NDK
         uses: actions/cache@v4
         with:
@@ -53,16 +56,14 @@ jobs:
           key: ${{ runner.os }}-android-ndk-${{ steps.get-date.outputs.date }}
           restore-keys: |
             ${{ runner.os }}-android-ndk-
+            
       # Install dependencies
       - name: Install dependencies
         run: |
           sudo apt update
           sudo apt-get install -y \
-            python3-pip \
             build-essential \
             git \
-            python3 \
-            python3-dev \
             ffmpeg \
             libsdl2-dev \
             libsdl2-image-dev \
@@ -72,29 +73,37 @@ jobs:
             libswscale-dev \
             libavformat-dev \
             libavcodec-dev \
+            libunwind-dev \
             zlib1g-dev
           sudo apt-get install -y \
             libgstreamer1.0 \
             gstreamer1.0-plugins-base \
             gstreamer1.0-plugins-good
           sudo apt-get install -y \
-            openjdk-17-jdk \
             libsqlite3-dev \
             sqlite3 \
             bzip2 \
             libbz2-dev \
-            libssl-dev \
             openssl \
             libgdbm-dev \
             libgdbm-compat-dev \
             liblzma-dev \
             libreadline-dev \
-            libncursesw5-dev \
-            libffi-dev \
-            uuid-dev \
+            uuid-dev
+          sudo apt-get install -y \
+            openjdk-17-jdk \
+            zip \
+            unzip \
             autoconf \
-            automake \
-            libtool
+            libtool \
+            pkg-config \
+            libncurses5-dev \
+            libncursesw5-dev \
+            libtinfo5 \
+            cmake \
+            libffi-dev \
+            libssl-dev \
+            automake
                         
           sudo apt-get update
           sudo apt-get upgrade
@@ -122,6 +131,7 @@ jobs:
           else
             echo "No changes to commit"
           fi
+          
       # Set up Java 17 required by Gradle
       - name: Setup Java 17 required by Gradle
         uses: actions/setup-java@v4
@@ -139,14 +149,14 @@ jobs:
       - name: Install pip dependencies
         run: |
           pip install --upgrade pip
-          pip install buildozer cython==0.29.33 virtualenv git+https://github.com/kivy/plyer.git
+          pip install buildozer virtualenv cython==0.29.33 git+https://github.com/kivy/plyer.git
           pip install kivy
           pip install kivymd
           pip install pyephem
           pip install ephem
           pip install geopy
           pip install pytz
-          pip install timezonefinder
+          pip install timezonefinder git+https://github.com/jannikmi/timezonefinder.git
           
       # Build with Buildozer
       - name: Build with Buildozer
