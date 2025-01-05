@@ -18,8 +18,8 @@ observer = ephem.Observer()
 observer.lat, observer.lon = '26.7916', '37.9528'  # Koordinat Hegra
 
 # Menentukan batas waktu perhitungan (misal, periode 19 tahun dari 1512 hingga 2044)
-start_date = datetime(1512, 3, 1)
-end_date = datetime(2044, 3, 31)
+start_date = datetime(1970, 3, 1)
+end_date = datetime(2999, 3, 31)
 
 # Fungsi untuk mencari bulan baru
 def find_new_moon(date):
@@ -55,17 +55,18 @@ def get_bulan_imlek_with_leap(year):
         bulan.insert(8, "Adzaar")
     return bulan
 
-class LunisolarApp(MDApp):
+class TharihSanahApp(MDApp):
     def build(self):
         self.screen = MDScreen()
 
         # Top Toolbar
-        self.toolbar = MDTopAppBar(title = 'Tharih Sanah')
-        self.toolbar.pos_hint = {'top':1}
+        self.toolbar = MDTopAppBar(
+        title = "Tharih Sanah",
+        pos_hint = {"top": 1})
         self.screen.add_widget(self.toolbar)
 
         self.input_year = MDTextField(
-            hint_text = "Masukkan Tahun dari 1512 hingga 2043",
+            hint_text = "Masukkan Tahun dari 1970 hingga 2999",
             size_hint = (0.8, 1),
             pos_hint = {"center_x": 0.5, "center_y": 0.8},
             input_filter = "int"
@@ -173,4 +174,4 @@ class LunisolarApp(MDApp):
         
 
 if __name__ == "__main__":
-    LunisolarApp().run()
+    TharihSanahApp().run()
