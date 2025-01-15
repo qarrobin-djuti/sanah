@@ -1,10 +1,10 @@
 [app]
 
 # (str) Title of your application
-title = Hegra Tharih Sanah
+title = hegraTharihSanah
 
 # (str) Package name
-package.name = hegra_tharih_sanah
+package.name = hegraTharihSanah
 
 # (str) Package domain (needed for android/ios packaging)
 package.domain = org.test
@@ -37,7 +37,7 @@ version = 0.1
 
 # (list) Application requirements
 # comma separated e.g. requirements = sqlite3,kivy
-requirements = python3,kivy==3.0.0,kivymd==1.2.0,ephem,geopy,pytz,timezonefinder,pillow
+requirements = python3,kivy==2.3.0,kivymd==1.2.0,ephem,geopy,pytz,timezonefinder,pillow
 
 # (str) Custom source folders for requirements
 # Sets custom source for any requirements with recipes
@@ -67,7 +67,7 @@ orientation = portrait
 osx.python_version = 3
 
 # Kivy version to use
-osx.kivy_version = 1.9.1
+osx.kivy_version = 2.3.0
 
 #
 # Android specific
@@ -101,7 +101,7 @@ android.permissions = android.permission.INTERNET, (name=android.permission.WRIT
 #android.features = android.hardware.usb.host
 
 # (int) Target Android API, should be as high as possible.
-#android.api = 34
+#android.api = 33
 
 # (int) Minimum API your APK / AAB will support.
 #android.minapi = 21
@@ -136,7 +136,7 @@ android.permissions = android.permission.INTERNET, (name=android.permission.WRIT
 # agreements. This is intended for automation only. If set to False,
 # the default, you will be shown the license when first running
 # buildozer.
-#android.accept_sdk_license = False
+android.accept_sdk_license = True
 
 # (str) Android entry point, default is ok for Kivy-based app
 #android.entrypoint = org.kivy.android.PythonActivity
