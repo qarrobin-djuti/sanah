@@ -1,7 +1,7 @@
 import ephem
 from datetime import datetime, timedelta
 from kivymd.app import MDApp
-from kivymd.uix.list import MDList, OneLineListItem
+from kivymd.uix.list import MDList, OneLineListItem, TwoLineListItem
 from kivymd.uix.screen import MDScreen
 from kivy.uix.scrollview import ScrollView
 from kivymd.uix.boxlayout import MDBoxLayout
@@ -145,8 +145,9 @@ class TharihSanahApp(MDApp):
             bulan_index = 0
 
             # Menampilkan daftar lengkap bulan dalam satu tahun dengan tanggal bulan baru yang sesuai
-            list_item = OneLineListItem(
-            text=f"\nDaftar new moon di kalender Sanah tahun {start_date.year} hingga {end_date.year}:"
+            list_item = TwoLineListItem(
+            text=f"\nDaftar new moon di kalender Sanah tahun {start_date.year} hingga {end_date.year}:",
+            secondary_text=f"\nLintang : {observer.lat}, Bujur : {observer.lon}"
             )
             self.list_view.add_widget(list_item)
             for year in range(start_date.year, end_date.year + 1):
@@ -158,7 +159,7 @@ class TharihSanahApp(MDApp):
                         # Mengonversi waktu new moon dari UTC ke waktu lokal
                         new_moon_utc = new_moon_dates[bulan_index]
                         new_moon_local = new_moon_utc.astimezone(local_timezone)
-                        list_item = OneLineListItem(text=f"{new_moon_local.strftime('%Y-%m-%d %H:%M:%S')} : {bulan}")
+                        list_item = OneLineListItem(text=f"{new_moon_local.strftime('%Y-%m-%d %H+7:%M:%S')} : {bulan}")
                         self.list_view.add_widget(list_item)
                         bulan_index += 1
                     else:
